@@ -9,7 +9,10 @@ proto {{ openvpn_proto }}6
 {% else %}
 proto {{ openvpn_proto }}
 {% endif %}
-dev tun
+{% if openvpn_device_name is defined %}
+dev {{ openvpn_device_name }}
+{% endif %}
+
 
 ca {{ openvpn_key_dir }}/ca.crt
 cert {{ openvpn_key_dir }}/server.crt
